@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #-*-coding:utf-8-*-
-#Time-stamp: <Fri Jun 14 05:47:59 JST 2013>
+#Time-stamp: <Fri Jun 14 06:26:44 JST 2013>
 
 import weechat as w
 import re
@@ -29,9 +29,10 @@ def random_join_cb(data, buffer, args):
         if mo:
             channels = mo[0]
 
-        nc = re.findall(r"^ustreame(\d+).addresses", line)
-        if nc and server_num < int(nc):
-            server_num = int(nc)
+        nc = re.findall(r"^ustream(\d+).addresses", line)
+        if nc and server_num < int(nc[0]):
+            # w.prnt("","nc: ;;;;;;;;;;;  "+nc[0])
+            server_num = int(nc[0])
 
     cnt = 1
     for ch in channels.split(","):
