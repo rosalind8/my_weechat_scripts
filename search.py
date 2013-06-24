@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #-*-coding:utf-8-*-
-#Time-stamp: <Mon Apr 22 12:59:26 JST 2013>
+#Time-stamp: <Mon Jun 24 19:24:19 JST 2013>
 
 import weechat as w
 import re
@@ -62,7 +62,7 @@ def search_whois_cb(data, signal, hashtable):
 def search_cb(data,buffer,args):
     w.hook_hsignal("irc_redirection_search_whois", "search_whois_cb", "")
     w.hook_hsignal_send("irc_redirect_command",
-                        { "server": "chat1.ustream.tv",
+                        { "server": w.buffer_get_string(buffer,"name").split(".")[0], # <- server name
                           "pattern": "whois",
                           "signal": "search",
                           "string": "" })
